@@ -1,0 +1,39 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Battleship game created in order to practice JavaScript testing.",
+  "scripts": {
+    "test": "",
+    "build": "webpack",
+    "dev": "webpack serve",
+    "watch": "jest --watch ./src/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuniel-reyes/Battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuniel-reyes/Battleship/issues"
+  },
+  "homepage": "https://github.com/yuniel-reyes/Battleship#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "css-loader": "6.7.2",
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "html-webpack-plugin": "5.5.0",
+    "jest": "^29.3.1",
+    "prettier": "2.8.1",
+    "style-loader": "3.3.1",
+    "stylelint-config-prettier": "9.0.4",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1"
+  }
+}
