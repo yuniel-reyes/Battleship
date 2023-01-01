@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Step by step
+Player.js
+UI.js
+Gameboard.js
+index.js
+Ship.js
+Game.js

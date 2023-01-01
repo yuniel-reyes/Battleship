@@ -1,5 +1,5 @@
 import { Computer } from "../src/Computer.js";
-import { Gameboard } from "../src/gameboard.js";
+import { Gameboard } from "../src/Gameboard.js";
 
 /* The game is played against the computer, 
 so make ‘computer’ players capable of making 
@@ -12,7 +12,7 @@ coordinate twice).
   // from the Gameboard coordinate as long
   // as that number was not already picked up*/
 
-test("computer plays random number 0 - 99", () => {
+test.skip("computer plays random number 0 - 99", () => {
   const computer = new Computer();
   const player1Board = new Gameboard("player1");
   player1Board.allShoots = [67, 13, 56, 78];

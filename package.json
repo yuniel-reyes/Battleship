@@ -2,11 +2,12 @@
   "name": "battleship",
   "version": "1.0.0",
   "description": "Battleship game created in order to practice JavaScript testing.",
+  
   "scripts": {
     "test": "",
     "build": "webpack",
     "dev": "webpack serve",
-    "watch": "jest --watch ./src/*.spec.js"
+    "watch": "jest --watch ./_test_/*.spec.js"
   },
   "repository": {
     "type": "git",

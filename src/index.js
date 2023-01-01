@@ -1,4 +1,4 @@
-const { Game } = require("./Game");
+import style from "./style.css";
+import { Game } from "./Game";
 
 const app = new Game();
-// document.getElementById("app").appendChild(app);

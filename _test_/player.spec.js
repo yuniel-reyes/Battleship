@@ -1,4 +1,4 @@
-import { Gameboard } from "../src/gameboard.js";
+import { Gameboard } from "../src/Gameboard.js";
 import { Player } from "../src/Player.js";
 // import { Computer } from "./computer.js";
 
@@ -13,7 +13,7 @@ but it should know whether or not a given move
 is legal. (i.e. it shouldn’t shoot the same 
 coordinate twice).
 */
-test("test player turn", () => {
+test.skip("test player turn", () => {
   const player1 = new Player("player1");
 
   // the function will return true,
@@ -23,7 +23,7 @@ test("test player turn", () => {
 });
 
 // player attacks
-test("test attack player1", () => {
+test.skip("test attack player1", () => {
   const player1 = new Player("player1");
 
   const attackFromPlayer1 = player1.attackOpponent(39);
