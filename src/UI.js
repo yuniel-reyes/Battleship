@@ -9,7 +9,76 @@ function UI() {
     rotationBtn: null,
   };
 
-  // coloringGrid = (gridNumber) => {};
+  function removeColoring(ev, e, cellsToBeColored) {
+    Array.from(ev.target.parentElement.children).forEach((eachCell2) => {
+      if (
+        Number(eachCell2.dataset.gridNumber) >=
+          Number(e.target.dataset.gridNumber) &&
+        eachCell2.dataset.gridNumber <= cellsToBeColored
+      ) {
+        eachCell2.classList.remove("grid-content-colored");
+      }
+    });
+  }
+
+  const movingToOtherCells = (e, gridNumber, shipLength) => {
+    const cellsToBeColored = Number(gridNumber) + Number(shipLength) - 1;
+
+    e.composedPath()[0].addEventListener(
+      "mouseleave",
+      (ev) => {
+        removeColoring(ev, e, cellsToBeColored);
+      },
+      { once: true }
+    );
+  };
+
+  const cellsToBeSelected = (e, gridNumber, shipLength) => {
+    const cellsToBeColored = Number(gridNumber) + Number(shipLength) - 1;
+    Array.from(e.target.parentElement.children).forEach((eachCell) => {
+      if (
+        Number(eachCell.dataset.gridNumber) >=
+          Number(e.target.dataset.gridNumber) &&
+        eachCell.dataset.gridNumber <= cellsToBeColored
+      ) {
+        eachCell.classList.add("grid-content-colored");
+      }
+    });
+  };
+
+  function selectedCells(ev, e, cellsToBeColored) {
+    const coord = [];
+    Array.from(ev.target.parentElement.children).forEach((eachCell2) => {
+      if (
+        Number(eachCell2.dataset.gridNumber) >=
+          Number(e.target.dataset.gridNumber) &&
+        eachCell2.dataset.gridNumber <= cellsToBeColored
+      ) {
+        eachCell2.classList.add("ship-here");
+        coord.push(eachCell2.dataset.gridNumber);
+      }
+    });
+
+    return coord;
+  }
+
+  const selecThisCells = (e, gridNumber, shipLength) => {
+    const cellsToBeColored = Number(gridNumber) + Number(shipLength) - 1;
+    if (!e.target.className.includes("ship-here")) {
+      e.composedPath()[0].addEventListener("mouseup", (ev) => {
+        const coord = selectedCells(ev, e, cellsToBeColored);
+        // place ships on board
+        player1Board.placeShip(
+          Object.entries(player1Board.shipsToPlaceObj[0])[0][0],
+          Object.entries(player1Board.shipsToPlaceObj[0])[0][1],
+          "horizontal",
+          coord
+        );
+        // remove recent placed shiip
+        player1Board.shipsToPlaceObj.shift();
+      });
+    }
+  };
 
   // Algorith to see if fit when horizontal rotation
   const checkFitHorizontal = (e) => {
@@ -17,7 +86,7 @@ function UI() {
     const shipLength = Object.entries(player1Board.shipsToPlaceObj[0])[0][1];
     // grid number = 5
     const gridNumber = e.target.dataset.gridNumber;
-    console.log(gridNumber);
+    // console.log(gridNumber);
     // check if ship fit: 9 + 5 = 14
     // line up to 10
     // most closer multiple of 10
@@ -33,17 +102,22 @@ function UI() {
       gridMult += 1;
     }
     const rest = gridMult - gridNumber + 1;
-    console.log(`${rest} ${Number(gridNumber)}`);
+    // console.log(`${rest} ${Number(gridNumber)}`);
     if (rest >= Number(shipLength)) {
-      console.log("Coloring and placing");
+      cellsToBeSelected(e, gridNumber, shipLength);
+      movingToOtherCells(e, gridNumber, shipLength);
+      selecThisCells(e, gridNumber, shipLength);
     } else {
-      console.log("Saying no");
+      // console.log("Saying no");
     }
   };
 
   const checkIfFit = (e) => {
-    if (nodeRef.rotationBtn.className === "horizontal") {
-      checkFitHorizontal(e);
+    // only if there are still ships to be placed
+    if (player1Board.shipsToPlaceObj.length !== 0) {
+      if (nodeRef.rotationBtn.className === "horizontal") {
+        checkFitHorizontal(e);
+      }
     }
   };
 

@@ -86,7 +86,7 @@
      cells according to the ship's size and its
      rotation parameter:
 
-   - If H: checkFitHorizontal
+   - If H: `checkFitHorizontal()`
      - get ship size
      - get cell number
      - get closer increasing-mult: closer mult of 10
@@ -94,9 +94,14 @@
      - get number of cell from selected cell up to
        closer increasing mult
      - if above number >= ship's size:
-       call `coloringGrid()`
+       call `coloringGrid()`:
+       - color the current cell
+       - color the other cells: cell number + ship length
+       - if user doesn't click, add event listener for mouseleaver and remove coloring
+       - if user click, cells should remain colored;
+         event listener for mouseleaver should not be add
      - if not, can't place ship
-   - If V: checkFitVorizontal
+   - If V: `checkFitVorizontal()`
 
      Let's take a closer look:
 
@@ -160,7 +165,14 @@
 3. IIFE as part of the constructor in class?
 4. IIFE as clas method?
 5. How tot test factory function
+6. Can you use an event object to add another event listener
+   if a particular events happens? Answer: use composedPath()
 
 **Discoveries**:
 
 1. Don’t compare arrays with ==....
+
+**Bottlenecks**
+
+1. Removing an event that was call inmediatelly
+   inside the f

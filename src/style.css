@@ -66,3 +66,11 @@ body {
 .grid-content {
   border: 0.2px solid black;
 }
+
+.grid-content-colored {
+  background-color: blue;
+}
+
+.ship-here {
+  background-color: brown;
+}
