@@ -16,23 +16,36 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: beige;
+  width: 100vw;
+  height: 100vh;
 }
 
-#place-your-boats {
-  width: 400px;
-  height: 600px;
-  background-color: blanchedalmond;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#place-boats-text-container {
+  position: absolute;
+  left: 360px;
+  top: 80px;
+}
+
+#welcome-text {
+  margin: 0;
 }
 
 #ship-text {
-  text-decoration: underline;
+  color:brown;
 }
 
-.text-banner {
+#place-your-boats {
+  width: 90vw;
+  height: 90vh;
+  background-image: linear-gradient(to right, rgb(255, 255, 255) 50%, rgb(0, 0, 0) 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.text-banner, #text-container-computer {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -54,7 +67,7 @@ body {
   background-color: rgb(73, 72, 72);
 }
 
-#player-board-grid {
+#player-board-grid, #computer-board-grid {
   display: grid;
   width: 300px;
   height: 300px;
@@ -63,8 +76,9 @@ body {
   background-color: aqua;
 }
 
-.grid-content {
+.grid-content, .grid-content-computer {
   border: 0.2px solid black;
+  /* margin: 4px; */
 }
 
 .grid-content-colored {

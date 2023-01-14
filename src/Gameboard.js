@@ -1,5 +1,6 @@
 // import { Game } from "./Game.js";
 import { Ship } from "./Ship.js";
+// import { UI } from "./UI.js";
 
 function Gameboard(playerName) {
   const player = playerName;
@@ -21,15 +22,6 @@ function Gameboard(playerName) {
       defaultCoordinates.push(eachCoord);
     }
   })();
-
-  // const createAllShips = () => {
-  //   for (const [eachShipName, eachShipSize] of Object.entries(
-  //     shipsToPlaceObj
-  //   )) {
-  //     let newShip = new Ship(eachShipName, eachShipSize);
-  //     shipsToPlaceArr.push(newShip);
-  //   }
-  // };
 
   const placeShip = (shipType, length, rotation, coord) => {
     const newShip = new Ship(shipType, length, rotation, coord);
@@ -90,7 +82,6 @@ function Gameboard(playerName) {
     defaultCoordinates,
     PlacedShips,
     shipsToPlaceObj,
-    // createAllShips,
     // thisShip,
     placeShip,
     // receiveAttack,

@@ -4,21 +4,18 @@
 
 ## App Description
 
-- App opens up, 'player-welcome-board' is shown.
-  `Player-Board(B2) and Player-Welcome-Board(B1)`
-- The 'player-welcome-board' is like the player-board.
-  Only that 'player-welcome-board' is used to place the
-  user's ships, and the 'player-board' is where the
-  player will receive the attacks.
-  So, player 'player-welcome-board' and 'player-board'
-  have to be somehow connected. Every time the player
-  place a ship on the 'player-welcome-board', the 'player-board'
-  shows the ship.
-- User have to place ships.
-- Play starts with player attacking computer
-- If hit, continues attacking
-- If missed, computer attack
-- Lose the first one that get all ships sunk.
+- App opens up, both boards are shown.
+- A text indicate the player that ships should be place
+- After all ships of player are placed, rotate button is removed
+- Ships of computer are placed
+- Game starts:
+  Attack player
+  When player is atacking: You are attacking
+  When player is being attacked: You are being attack
+  If player hit, player continues attacking
+  When computer is attacking: Computer is attacking
+  When computer is being attacked: Computer is being attacked
+  If computer hit, player continues attacking
 
 ## I. Isolate functionality from DOM manipulation
 
@@ -101,7 +98,7 @@
        - if user click, cells should remain colored;
          event listener for mouseleaver should not be add
      - if not, can't place ship
-   - If V: `checkFitVorizontal()`
+   - If V: `checkFitVertical()`
 
      Let's take a closer look:
 
@@ -114,19 +111,39 @@
 - Ex.2: Ship size 3, hover 9, vertical rotation:
   When placing a ship with vertical rotation,
   the function should take the hovering grid(9), and
-  checks up to the corresponding numbers considering
-  that every line is a sequence up to 10, starting
+  checks down to the corresponding numbers considering
+  that every line is a sequence up to 10x, starting
   with 0 and ending with 99. To do that, the function
-  could substract 10 every time, according to the ship
+  could add 10 every time, according to the ship
   size. So as 9 is in the first line
-  (1 2 3 4 5 6 7 8 9 10), the ship can not be
-  place there.
+  (1 2 3 4 5 6 7 8 9 10), the ship can be
+  place there: 9
+  19
+  29
   Ex.3: Ship size 3, hover 12, horizontal rotation:
   Ship will be place over 12 - 13 -14
   Ex.4: Ship size 3, hover 34, vertical rotation:
   Ship will be place over 14
   24
   34
+
+4. Create logic to place computer ships
+
+- Algorithm:
+  - pick between horizontal or vertical
+  - generate a random number between 1 and 100
+    -run `checkFitComputer()`. It will take the
+    string returned by `obj.randomPosition()` and
+    the obj. It will check if there are ships to place,
+    and then run `checkFitComputerHoritzontal()` or
+    `checkFitComputerVertical()`
+  - `checkFitComputerHoritzontal()`: similar to the
+    one of player, with some changes. It will call
+    `selecThisCellsComputerHorizontal()`
+  - `selecThisCellsComputerHorizontal()` will:
+    call `noShipsCheckComputerHorizontal()`.
+    call `selectedCellsComputerHorizontal()`
+    call `placeShip()`
 
 ## V. Create Player / Player tests
 
@@ -171,8 +188,8 @@
 **Discoveries**:
 
 1. Don’t compare arrays with ==....
+2. composedPath()
+3. signal propertty as part of the possible option
+4. stopImmediatePropagation
 
 **Bottlenecks**
-
-1. Removing an event that was call inmediatelly
-   inside the f
